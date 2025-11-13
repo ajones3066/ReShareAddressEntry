@@ -1,0 +1,67 @@
+{
+  "agencyId": [
+    { "scheme": "ISIL", "value": "US-NNNS" },
+    { "scheme": "OCLC", "value": "ZMU" },
+    { "scheme": "ROR", "value": "05dsk2s44" },
+    { "scheme": "ReShare::ISIL", "value": "US-NNNS" },
+    { "scheme": "Rapid:", "value": "ZZMU" }
+  ],
+  "agencyName": "The New School University Libraries",
+  "addressInformation": {
+    "line1": "63 Fifth Avenue",
+    "line2": "Room L110, University Center",
+    "city": "New York",
+    "region": "NY",
+    "postalCode": "10003",
+    "country": "US",
+    "timezone": "UTC+5:00"
+  },
+  "contactInformation": {
+    "contactName": "Inter-Library Loan Department",
+    "email": "ill@newschool.edu",
+    "phone": "+1-212-229-5307",
+    "url": "https://library.newschool.edu/ill"
+  },
+  "networkMemberships": [
+    {
+      "networkName": "PALCI / ReShare",
+      "memberId": "US-NNNS",
+      "role": ["Requester","Lender"],
+      "preferredProtocol": "ISO18626"
+      "ISO18626Endpoint": "https://na01.someurl/"
+      "ISOBorrowingMessagesSupported": ["ExpectToSupply","WillSupply",],
+      "ISOLendingMessagesSupported": ["",""],
+      "capabilities": {
+        "loanService": true,
+        "copyService": true,
+        "loanConditions": [
+          "Standard loan: 4 weeks, 1 renewal",
+          "No loans of rare or archival items",
+          "Digital copies preferred where possible"],
+      "deliveryMethods": [
+        "USPS",
+        "Courier",
+        "PALCI/IDS Shared Delivery",
+        "Campus Delivery"],
+      "fileDelivery": [
+        "ISO18626-Link",
+        "Email",
+        "SFTP",
+        "ExternalURL"],
+        "supportedFormats": ["PDF", "TIFF", "ZIP"]}
+    },
+    {
+      "networkName": "Ex Libris Rapido",
+      "memberId": "TNSSC",
+      "role": "both",
+      "preferredProtocol": "ISO18626"
+    },
+    {
+      "networkName": "IDS Project",
+      "memberId": "NNSU",
+      "role": "both",
+      "preferredProtocol": "ISO18626"
+    }
+  ],
+  "lastUpdated": "2025-11-07T16:00:00Z"
+}
