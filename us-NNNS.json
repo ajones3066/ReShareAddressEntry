@@ -2,7 +2,8 @@
   "agencyId": [
     { "scheme": "ISIL", "value": "US-NNNS" },
     { "scheme": "OCLC", "value": "ZMU" },
-    { "scheme": "ROR", "value": "05dsk2s44" },
+    { "scheme": "ISNI", "value" : "0000 0004 0523 9547"},
+    { "scheme": "ROR", "value": "02tvcev59" },
     { "scheme": "ReShare::ISIL", "value": "US-NNNS" },
     { "scheme": "Rapid:", "value": "ZZMU" }
   ],
@@ -22,6 +23,11 @@
     "phone": "+1-212-229-5307",
     "url": "https://library.newschool.edu/ill"
   },
+  "financialInfo": {
+    currencySupported: ["USD","CAD","GBP","MXN","AUD"],
+    paymentMethods: {
+    "IFM": { "WorldShareSymbol": "ZMU", "Currency": "USD"},
+  },
   "networkMemberships": [
     {
       "networkName": "PALCI / ReShare",
@@ -34,6 +40,7 @@
       "capabilities": {
         "loanService": true,
         "copyService": true,
+        "copyOrLoan": true,
         "loanConditions": [
           "Standard loan: 4 weeks, 1 renewal",
           "No loans of rare or archival items",
@@ -44,11 +51,12 @@
         "PALCI/IDS Shared Delivery",
         "Campus Delivery"],
       "fileDelivery": [
-        "ISO18626-Link",
+        "ArticleExchange",
         "Email",
         "SFTP",
-        "ExternalURL"],
-        "supportedFormats": ["PDF", "TIFF", "ZIP"]}
+        "ExternalURL"
+      ],
+        "supportedFormats": ["PDF", "TIFF", "ePub"]}
     },
     {
       "networkName": "Ex Libris Rapido",
