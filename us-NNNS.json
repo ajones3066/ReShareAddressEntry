@@ -24,8 +24,8 @@
     "url": "https://library.newschool.edu/ill"
   },
   "financialInfo": {
-    currencySupported: ["USD","CAD","GBP","MXN","AUD"],
-    paymentMethods: {
+    "currencySupported": ["USD","CAD","GBP","MXN","AUD"],
+    "paymentMethods": {
     "IFM": { "WorldShareSymbol": "ZMU", "Currency": "USD"},
   },
   "networkMemberships": [
