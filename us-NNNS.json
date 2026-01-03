@@ -1,75 +1,319 @@
 {
-  "agencyId": [
-    { "scheme": "ISIL", "value": "US-NNNS" },
-    { "scheme": "OCLC", "value": "ZMU" },
-    { "scheme": "ISNI", "value" : "0000 0004 0523 9547"},
-    { "scheme": "ROR", "value": "02tvcev59" },
-    { "scheme": "ReShare::ISIL", "value": "US-NNNS" },
-    { "scheme": "Rapid:", "value": "ZZMU" }
-  ],
-  "agencyName": "The New School University Libraries",
-  "addressInformation": {
-    "line1": "63 Fifth Avenue",
-    "line2": "Room L110, University Center",
-    "city": "New York",
-    "region": "NY",
-    "postalCode": "10003",
-    "country": "US",
-    "timezone": "UTC+5:00"
+  // ============================================================
+  // Directory response metadata
+  // ============================================================
+
+  "responseMetadata": {
+    "responseType": "InstitutionDirectoryResponse",
+    "schemaVersion": "1.0",
+    "responseId": "urn:uuid:9e0f7b2c-1f6d-4b2a-9a9c-83b8bce81c44",
+
+    "operator": {
+      "operatorId": "https://directory.palci.org",
+      "operatorName": "PALCI Directory Service",
+      "operatorType": "consortium",
+
+      "contact": {
+        "email": "directory@palci.org"
+        // Administrative contact for directory governance and trust issues.
+      }
+    },
+
+    "temporalValidity": {
+      "generatedAt": "2026-03-01T15:00:00Z",
+      "validUntil": "2026-04-01T00:00:00Z",
+      "gracePeriodSeconds": 604800
+    },
+
+    "cachePolicy": {
+      "cacheable": true,
+      "maxCacheSeconds": 2592000,
+      "redistributionPermitted": true,
+      "mirroringPermitted": true
+    },
+
+    "trustHints": {
+      "signatureRequired": true,
+      "verificationMethod": "record-signature"
+    },
+
+    "scope": {
+      "level": "institution",
+      "semantics": "https://directory.palci.org/spec/institution-response"
+    }
   },
-  "contactInformation": {
-    "contactName": "Inter-Library Loan Department",
-    "email": "ill@newschool.edu",
-    "phone": "+1-212-229-5307",
-    "url": "https://library.newschool.edu/ill"
+
+  // ============================================================
+  // Institution identity (program-agnostic)
+  // ============================================================
+
+  "institution": {
+    "id": "US-nnns",
+    "idType": "ISIL",
+    "caseSensitive": true,
+    "idAuthority": "US",
+    "name": "The New School",
+
+    "uri": "https://directory.palci.org/participants/US-nnns",
+
+    "location": {
+      "administrativeUnit": "University Libraries",
+      "streetAddress1": "66 West 12th Street",
+      "city": "New York",
+      "state": "NY", // ISO subdivision 3166-2
+      "postalCode": "10011",
+      "country": "USA", // ISO 3166-3
+      "roles": ["shipping","billing","claims","ordering","returns","payment"]
+    },
+
+    "contact": {
+      "email": "ill@newschool.edu"
+    }
   },
-  "financialInfo": {
-    "currencySupported": ["USD","CAD","GBP","MXN","AUD"],
-    "paymentMethods": {
-    "IFM": { "WorldShareSymbol": "ZMU", "Currency": "USD"},
-  },
-  "networkMemberships": [
+
+  // ============================================================
+  // Participation index
+  // ============================================================
+
+  "participationsIndex": [
     {
-      "networkName": "PALCI / ReShare",
-      "memberId": "US-NNNS",
-      "role": ["Requester","Lender"],
-      "preferredProtocol": "ISO18626"
-      "ISO18626Endpoint": "https://na01.someurl/"
-      "ISOBorrowingMessagesSupported": ["ExpectToSupply","WillSupply",],
-      "ISOLendingMessagesSupported": ["",""],
-      "capabilities": {
-        "loanService": true,
-        "copyService": true,
-        "copyOrLoan": true,
-        "loanConditions": [
-          "Standard loan: 4 weeks, 1 renewal",
-          "No loans of rare or archival items",
-          "Digital copies preferred where possible"],
-      "deliveryMethods": [
-        "USPS",
-        "Courier",
-        "PALCI/IDS Shared Delivery",
-        "Campus Delivery"],
-      "fileDelivery": [
-        "ArticleExchange",
-        "Email",
-        "SFTP",
-        "ExternalURL"
-      ],
-        "supportedFormats": ["PDF", "TIFF", "ePub"]}
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-palci",
+      "programType": "resource-sharing",
+      "networkId": "https://reshare.org/network",
+      "tenantId": "https://palci.org/reshare/tenant",
+      "tenantName": "PALCI / EZBorrow",
+      "status": "active"
     },
     {
-      "networkName": "Ex Libris Rapido",
-      "memberId": "TNSSC",
-      "role": "both",
-      "preferredProtocol": "ISO18626"
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-borrowdirect",
+      "programType": "resource-sharing",
+      "networkId": "https://reshare.org/network",
+      "tenantId": "https://borrowdirect.org/reshare/tenant",
+      "tenantName": "BorrowDirect",
+      "status": "active"
     },
     {
-      "networkName": "IDS Project",
-      "memberId": "NNSU",
-      "role": "both",
-      "preferredProtocol": "ISO18626"
+      "recordId": "https://directory.palci.org/participations/US-nnns/preservation-clockss",
+      "programType": "preservation",
+      "networkId": "https://clockss.org/network",
+      "status": "active"
+    },
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/shared-print-palci",
+      "programType": "collective-collecting",
+      "networkId": "https://palci.org/shared-print",
+      "status": "active"
     }
   ],
-  "lastUpdated": "2025-11-07T16:00:00Z"
+
+  // ============================================================
+  // Participation records
+  // ============================================================
+
+  "participations": [
+
+    // ------------------------------------------------------------
+    // Resource Sharing: PALCI / EZBorrow (PKI)
+    // ------------------------------------------------------------
+
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-palci",
+      "programType": "resource-sharing",
+
+      "network": {
+        "networkId": "https://reshare.org/network",
+        "name": "ReShare"
+      },
+
+      "tenant": {
+        "tenantId": "https://palci.org/reshare/tenant",
+        "name": "PALCI / EZBorrow"
+      },
+
+      "iso18626": {
+        "endpoint": "https://ill.newschool.edu:9001/iso18626/palci",
+        "roles": ["requesting", "supplying"],
+        "types": ["loan", "copy"]
+      },
+
+      "serviceLevels": [
+        { "code": "standard" },
+        { "code": "express" },
+        { "code": "rush" }
+      ],
+
+      "supportedPaymentMethods": [
+        {
+          "network": "IFM",
+          // ISO ILL Fee Management (IFM) network identifier
+
+          "accountId": "ZMU",
+          // Account identifier as registered with IFM
+
+          "currency": ["USD"]
+        },
+        {
+          "network": "IFLA",
+          // IFLA Voucher Scheme
+
+          "accountId": "US-nnns",
+          "currency": ["USD"]
+        },
+        {
+          "network": "PALCI",
+          // Consortium-internal billing or offset model
+
+          "accountId": "US-nnns",
+          "currency": ["USD"]
+        },
+        {
+          "network": "CAVAL",
+          // Example of participation in a foreign billing network
+
+          "accountId": "US-nnns",
+          "currency": ["AUD"]
+        }
+      ],
+      // Payment methods are declarative and tenant-scoped.
+      // Presence does NOT imply that fees are always charged.
+      // Absence MUST NOT be interpreted as "no fees possible".
+
+      "implementerProfile": {
+        "deliveryMethods": [
+          { "code": "physical" },
+          { "code": "electronic" }
+        ],
+        "electronicDelivery": {
+          "methods": ["email", "ArticleExchange", "ExternalUrl"],
+          "supportedFormats": ["PDF", "TIFF"]
+        }
+      },
+
+      "authentication": [
+        {
+          "profile": "mTLS-PKI",
+          "pki": {
+            "trustedIssuers": ["https://directory.palci.org/pki/ca"]
+          }
+        }
+      ],
+
+      "assertions": {
+        "assertedBy": [
+          { "authorityId": "https://directory.palci.org/authority", "name": "PALCI" }
+        ]
+      }
+    },
+
+    // ------------------------------------------------------------
+    // Resource Sharing: BorrowDirect (OAuth 2.0)
+    // ------------------------------------------------------------
+
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-borrowdirect",
+      "programType": "resource-sharing",
+
+      "network": {
+        "networkId": "https://reshare.org/network",
+        "name": "ReShare"
+      },
+
+      "tenant": {
+        "tenantId": "https://borrowdirect.org/reshare/tenant",
+        "name": "BorrowDirect"
+      },
+
+      "iso18626": {
+        "endpoint": "https://ill.newschool.edu:9001/iso18626/borrowdirect",
+        "roles": ["requesting", "supplying"],
+        "types": ["loan"]
+      },
+
+      "serviceLevels": [{ "code": "standard" }],
+
+      "supportedPaymentMethods": [
+        {
+          "network": "BorrowDirect",
+          // BorrowDirect operates a closed, internal cost model
+
+          "accountId": "US-nnns",
+          "currency": ["USD"]
+        }
+      ],
+
+      "authentication": [
+        {
+          "profile": "OAuth2",
+          "oauth2": {
+            "grantType": "client_credentials",
+            "tokenEndpoint": "https://auth.borrowdirect.org/oauth2/token",
+            "scopes": ["iso18626.request", "iso18626.supply"]
+          }
+        }
+      ],
+
+      "assertions": {
+        "assertedBy": [
+          { "authorityId": "https://directory.palci.org/authority", "name": "PALCI" }
+        ]
+      }
+    },
+
+    // ------------------------------------------------------------
+    // Preservation: CLOCKSS
+    // ------------------------------------------------------------
+
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/preservation-clockss",
+      "programType": "preservation",
+
+      "network": {
+        "networkId": "https://clockss.org/network",
+        "name": "CLOCKSS"
+      },
+
+      "roles": ["content-provider", "governance-participant"],
+
+      "preservationProfile": {
+        "contentTypes": ["journals", "ebooks"],
+        "preservationModel": "dark-archive",
+        "triggerEvents": ["publisher-ceases", "catastrophic-loss"],
+        "accessConditions": "triggered-only"
+      },
+
+      "contact": {
+        "email": "preservation@newschool.edu"
+      }
+    },
+
+    // ------------------------------------------------------------
+    // Collective Collecting: PALCI Shared Print
+    // ------------------------------------------------------------
+
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/shared-print-palci",
+      "programType": "collective-collecting",
+
+      "network": {
+        "networkId": "https://palci.org/shared-print",
+        "name": "PALCI Shared Print Program"
+      },
+
+      "roles": ["retention-holder"],
+
+      "collectiveCollectingProfile": {
+        "materialTypes": ["monographs"],
+        "retentionCommitment": {
+          "startYear": 2024,
+          "endYear": 2049
+        },
+        "lastCopyPolicy": true,
+        "dispositionPolicy": "no-withdrawal-without-consortium-approval"
+      },
+
+      "contact": {
+        "email": "collections@newschool.edu"
+      }
+    }
+  ]
 }
