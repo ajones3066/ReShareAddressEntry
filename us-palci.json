@@ -1,1 +1,160 @@
+{
+  // ============================================================
+  // Consortium Directory Response (with operator role)
+  // ============================================================
+
+  "responseMetadata": {
+    "responseType": "ConsortiumDirectoryResponse",
+    "schemaVersion": "1.0",
+    "responseId": "urn:uuid:71c2b9a4-0c4a-4d7b-9f91-8c87a1b6e312",
+
+    "operator": {
+      "operatorId": "https://palci.org",
+      "operatorName": "PALCI Shared Services",
+      "operatorType": "consortium",
+      // Consortium acting as a technology operator for some services.
+
+      "contact": {
+        "email": "systems@palci.org"
+      }
+    },
+
+    "scope": {
+      "level": "consortium",
+      "semantics": "https://palci.org/spec/consortium-directory-response"
+    }
+  },
+
+  // ============================================================
+  // Consortium profile (governance role)
+  // ============================================================
+
+  "consortiumProfile": {
+    "consortiumId": "https://palci.org",
+    "name": "PALCI",
+
+    "description": "Academic library consortium providing governance and shared technical services",
+
+    "governanceModel": "member-governed"
+  },
+
+  // ============================================================
+  // Members (governance scope)
+  // ============================================================
+
+  "members": [
+    {
+      "institutionId": "https://directory.example.org/participants/US-nnns",
+      "name": "The New School"
+    }
+  ],
+
+  // ============================================================
+  // Programs (coordination role)
+  // ============================================================
+
+  "programs": [
+    {
+      "programId": "palci-resource-sharing",
+      "programType": "resource-sharing",
+
+      "description": "PALCI resource sharing program",
+
+      "serviceProviders": [
+        "palci-reshare-node",
+        "palci-exlibris-rapido"
+      ]
+    }
+  ],
+
+  // ============================================================
+  // Service providers (delivery role)
+  // ============================================================
+
+  "serviceProviders": [
+    {
+      "serviceProviderId": "palci-reshare-node",
+
+      "serviceType": "resource-sharing",
+
+      "operatorType": "consortium",
+      // Consortium-operated service
+
+      "system": "ReShare",
+
+      "networkProfileRef": "https://palci.org/network/reshare",
+      // Points to the consortium’s own network/operator declaration.
+    },
+    {
+      "serviceProviderId": "palci-exlibris-rapido",
+
+      "serviceType": "resource-sharing",
+
+      "operatorType": "vendor",
+
+      "system": "Rapido",
+
+      "networkDirectoryRef": "https://vendor.example.org/rapido-network"
+    }
+  ],
+
+  // ============================================================
+  // Network profile (operator role)
+  // ============================================================
+
+  "networkProfile": {
+    "networkId": "https://palci.org/network/reshare",
+    "name": "PALCI ReShare Network",
+
+    "operator": "PALCI",
+    "operatorType": "consortium",
+
+    "description": "Consortium-operated ReShare resource sharing network"
+  },
+
+  // ============================================================
+  // ISO 18626 connectivity (operator role)
+  // ============================================================
+
+  "iso18626Connection": {
+    "endpoint": "https://reshare.palci.org/iso18626",
+
+    "supportedRoles": ["requesting", "supplying"],
+    "supportedTransactionTypes": ["loan", "copy"],
+
+    "authenticationProfileRef": "mtls-pki-palci"
+  },
+
+  // ============================================================
+  // Authentication (operator role)
+  // ============================================================
+
+  "authentication": [
+    {
+      "profileId": "mtls-pki-palci",
+      "profile": "mTLS-PKI",
+
+      "pki": {
+        "clientAuthRequired": true,
+        "trustedIssuers": [
+          "https://palci.org/pki/ca"
+        ]
+      }
+    }
+  ],
+
+  // ============================================================
+  // Assertions
+  // ============================================================
+
+  "assertions": {
+    "assertedBy": [
+      {
+        "authorityId": "https://palci.org",
+        "authorityType": "consortium",
+        "name": "PALCI"
+      }
+    ]
+  }
+}
 
