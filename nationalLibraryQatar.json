@@ -1,0 +1,89 @@
+{
+  // ============================================================
+  // National Library Network Directory Response
+  // Qatar National Library
+  // ============================================================
+
+  "responseMetadata": {
+    "responseType": "NationalLibraryDirectoryResponse",
+    "schemaVersion": "1.0",
+    "responseId": "urn:uuid:qnl-0001",
+
+    "operator": {
+      "operatorId": "https://www.qnl.qa",
+      "operatorName": "Qatar National Library",
+      "operatorType": "national-library",
+      "contact": { "email": "systems@qnl.qa" }
+    },
+
+    "scope": {
+      "level": "national",
+      "jurisdiction": "QAT"
+    }
+  },
+
+  "networkProfile": {
+    "networkId": "https://www.qnl.qa/network",
+    "name": "Qatar National Library Network",
+    "operatorType": "national-library",
+    "jurisdiction": { "country": "QAT" }
+  },
+
+  "authorityDeclarations": {
+    "registryAuthority": [
+      {
+        "registryType": "external",
+        "registryUri": "https://www.oclc.org/registry/library-symbols",
+        // External library symbol registry operated by OCLC
+
+        "issuingAuthority": "https://www.oclc.org",
+        "scope": "national-usage",
+
+        "notes": [
+          "Qatar does not operate a national ISIL registry",
+          "OCLC library symbols are used operationally"
+        ]
+      }
+    ],
+
+    "bibliographicAuthority": [
+      {
+        "name": "Qatar National Bibliography",
+        "authorityType": "national-bibliography",
+        "identifierNamespaces": [
+          "https://www.oclc.org/registry/library-symbols",
+          "https://www.qnl.qa/identifiers"
+        ],
+        "services": [
+          {
+            "serviceName": "QNL Discovery",
+            "serviceType": "national-discovery-and-bibliographic-access",
+            "serviceEndpoint": "https://www.qnl.qa/en/discover"
+          }
+        ]
+      }
+    ]
+  },
+
+  "protocolSupport": {
+    "iso18626": { "supportedVersions": ["1.3"] },
+    "oai-pmh": { "supported": true }
+  },
+
+  "iso18626Connection": {
+    "endpoint": "https://services.qnl.qa/iso18626",
+    "supportedRoles": ["requesting", "supplying"],
+    "authenticationProfileRef": "oauth2-qnl"
+  },
+
+  "authentication": [
+    {
+      "profileId": "oauth2-qnl",
+      "profile": "OAuth2",
+      "oauth2": {
+        "grantType": "client_credentials",
+        "tokenEndpoint": "https://auth.qnl.qa/oauth2/token"
+      }
+    }
+  ]
+}
