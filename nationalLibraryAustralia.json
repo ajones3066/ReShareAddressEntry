@@ -1,0 +1,322 @@
+{
+  // ============================================================
+  // National Library Network Directory Response
+  // Example: National Library of Australia (NLA)
+  // ============================================================
+
+  "responseMetadata": {
+    "responseType": "NationalLibraryDirectoryResponse",
+    "schemaVersion": "1.0",
+    "responseId": "urn:uuid:8c1d6e9f-3b2a-4d7b-a4a9-3f9a1e7c4b22",
+
+    "operator": {
+      "operatorId": "https://www.nla.gov.au",
+      // NLA is acting as a national authority and as a service operator.
+
+      "operatorName": "National Library of Australia",
+      "operatorType": "national-library",
+
+      "contact": {
+        "email": "systems@nla.gov.au"
+        // Contact for national registry, bibliographic,
+        // and network services.
+      }
+    },
+
+    "temporalValidity": {
+      "generatedAt": "2026-03-05T09:00:00Z",
+      "validUntil": "2026-06-30T00:00:00Z"
+      // National authority records are relatively stable.
+    },
+
+    "trustHints": {
+      "signatureRequired": true
+    },
+
+    "scope": {
+      "level": "national",
+      "semantics": "https://www.nla.gov.au/spec/national-network-directory"
+    }
+  },
+
+  // ============================================================
+  // Network profile
+  // ============================================================
+
+  "networkProfile": {
+    "networkId": "https://www.nla.gov.au/network",
+    // Canonical identifier for NLA-operated national services.
+
+    "name": "Australia National Library Network",
+
+    "operator": "National Library of Australia",
+    "operatorType": "national-library",
+
+    "description": "National library–operated network providing registry, bibliographic, discovery, and resource sharing services",
+
+    "jurisdiction": {
+      "country": "AUS"
+      // ISO 3166-1 alpha-3 country code
+    }
+  },
+
+  // ============================================================
+  // Authority declarations
+  // ============================================================
+
+  "authorityDeclarations": {
+    // Formal authority roles held by the NLA.
+    // These are normative within Australia.
+
+    "registryAuthority": [
+      {
+        "registryType": "ISIL",
+        "standard": "ISO 15511:2019",
+
+        "scope": "national",
+
+        "registryEndpoint": "https://isil.nla.gov.au",
+
+        "notes": [
+          "NLA is the designated ISIL issuing agency for Australia",
+          "ISIL symbols issued here are authoritative nationally"
+        ]
+      }
+    ],
+
+    "bibliographicAuthority": [
+      {
+        "authorityType": "national-bibliography",
+
+        "name": "Australian National Bibliographic Database (ANBD)",
+
+        "standards": [
+          "MARC21",
+          "BIBFRAME",
+          "RDA"
+        ],
+
+        "identifierNamespaces": [
+          "ANBD",
+          "NLA",
+          "NBN"
+        ],
+
+        "services": [
+          {
+            "serviceName": "Trove",
+            "serviceType": "discovery-and-bibliographic-access",
+            "serviceEndpoint": "https://trove.nla.gov.au"
+            // Trove is a service exposing and aggregating
+            // national bibliographic and authority data.
+          }
+        ],
+
+        "authorityEndpoint": "https://www.nla.gov.au/anbd",
+
+        "notes": [
+          "NLA is the authoritative source for the ANBD",
+          "Bibliographic and authority records are maintained under national mandate"
+        ]
+      }
+    ]
+  },
+
+  // ============================================================
+  // Platform profile
+  // ============================================================
+
+  "platformProfile": {
+    // Describes the software environment operated by the NLA.
+    // This is intentionally high-level and non-prescriptive.
+
+    "systemType": "national-library-services-platform",
+    "operator": "National Library of Australia",
+
+    "version": "2026",
+    "releaseChannel": "continuous",
+
+    "notes": [
+      "Multiple internal platforms may be used",
+      "Platform details are informational only"
+    ]
+  },
+
+  // ============================================================
+  // Protocol support
+  // ============================================================
+
+  "protocolSupport": {
+    "iso18626": {
+      "supportedVersions": ["1.3"],
+      "profiles": ["default"],
+      "transport": ["HTTPS"]
+    },
+
+    "oai-pmh": {
+      "supported": true,
+      "usage": "bibliographic-harvesting"
+    },
+
+    "restApi": {
+      "supported": true,
+      "usage": "registry-and-bibliographic-services"
+    }
+  },
+
+  // ============================================================
+  // ISO 18626 connection
+  // ============================================================
+
+  "iso18626Connection": {
+    // National-level ISO 18626 endpoint.
+
+    "endpoint": "https://services.nla.gov.au/iso18626",
+
+    "supportedRoles": ["requesting", "supplying"],
+
+    "supportedTransactionTypes": ["loan", "copy"],
+
+    "transport": {
+      "protocol": "HTTPS",
+      "methods": ["POST"],
+      "contentType": "application/xml"
+    },
+
+    "authenticationProfileRef": "mtls-pki-nla"
+  },
+
+  // ============================================================
+  // ISO 18626 state model
+  // ============================================================
+
+  "iso18626StateModel": {
+    "requestingStates": [
+      "REQUESTED",
+      "SHIPPED",
+      "RECEIVED",
+      "RETURNED",
+      "CANCELLED"
+    ],
+
+    "supplyingStates": [
+      "REQUEST_RECEIVED",
+      "SHIPPED",
+      "DELIVERED",
+      "COMPLETED",
+      "UNFILLED"
+    ],
+
+    "terminalStates": [
+      "COMPLETED",
+      "CANCELLED",
+      "UNFILLED"
+    ]
+  },
+
+  // ============================================================
+  // Delivery and payment capabilities
+  // ============================================================
+
+  "deliveryCapabilities": {
+    "electronicDeliveryMethods": [
+      "ExternalUrl",
+      "Email"
+    ],
+
+    "physicalDeliveryMethods": [
+      "PostalService",
+      "Courier"
+    ],
+
+    "supportedPaymentMethods": [
+      {
+        "network": "IFLA",
+        "currency": ["AUD"]
+      }
+    ],
+
+    "notes": [
+      "Delivery and payment capabilities vary by participating institution",
+      "Declarations indicate technical capability only"
+    ]
+  },
+
+  // ============================================================
+  // Groups
+  // ============================================================
+
+  "groups": [
+    {
+      "groupId": "nla-national-participants",
+
+      "groupType": "national-participation",
+
+      "description": "Australian institutions participating in NLA-operated national services",
+
+      "supportedTransactionTypes": ["loan", "copy"],
+
+      "members": [
+        "https://directory.example.org/participants/AU-nla",
+        "https://directory.example.org/participants/AU-anu",
+        "https://directory.example.org/participants/AU-monash"
+      ],
+
+      "stability": "semi-static",
+
+      "notes": [
+        "Group reflects national participation",
+        "Membership does not imply service guarantees"
+      ]
+    }
+  ],
+
+  // ============================================================
+  // Authentication
+  // ============================================================
+
+  "authentication": [
+    {
+      "profileId": "mtls-pki-nla",
+      "profile": "mTLS-PKI",
+      "profileVersion": "1.0",
+
+      "pki": {
+        "clientAuthRequired": true,
+
+        "trustedIssuers": [
+          "https://pki.nla.gov.au/ca"
+        ],
+
+        "certificateBinding": {
+          "field": "subjectAltName.uri",
+          "pattern": "urn:isil:{id}"
+        }
+      }
+    }
+  ],
+
+  // ============================================================
+  // Assertions and signatures
+  // ============================================================
+
+  "assertions": {
+    "assertedBy": [
+      {
+        "authorityId": "https://www.nla.gov.au",
+        "authorityType": "national-library",
+        "name": "National Library of Australia"
+      }
+    ]
+  },
+
+  "responseSignatures": [
+    {
+      "algorithm": "EdDSA",
+      "signedBy": "https://www.nla.gov.au",
+      "signerRole": "national-library",
+      "keyId": "nla-dir-2026",
+      "value": "BASE64_RESPONSE_SIGNATURE"
+    }
+  ]
+}
