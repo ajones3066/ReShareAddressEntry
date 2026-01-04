@@ -1,0 +1,297 @@
+{
+  // ============================================================
+  // Vendor Network Directory Response
+  // Taxonomy + connectivity announcement for a vendor-operated
+  // ISO 18626 resource sharing network.
+  // ============================================================
+
+  "responseMetadata": {
+    "responseType": "VendorDirectoryResponse",
+    "schemaVersion": "1.0",
+    "responseId": "urn:uuid:b3b7e1d4-5e6a-4d9e-9b1f-1c2e77d5c901",
+
+    "operator": {
+      "operatorId": "https://vendor.example.org",
+      // Vendor operating the directory and the network.
+
+      "operatorName": "Example Vendor Network Directory",
+      "operatorType": "vendor",
+
+      "contact": {
+        "email": "network-ops@examplevendor.org"
+        // Technical integration and connectivity contact.
+        // NOT a governance or institutional policy contact.
+      }
+    },
+
+    "temporalValidity": {
+      "generatedAt": "2026-03-02T14:30:00Z",
+      "validUntil": "2026-03-09T00:00:00Z",
+      "gracePeriodSeconds": 172800
+    },
+
+    "cachePolicy": {
+      "cacheable": true,
+      "maxCacheSeconds": 86400,
+      "redistributionPermitted": false,
+      "mirroringPermitted": false
+    },
+
+    "trustHints": {
+      "signatureRequired": true,
+      "verificationMethod": "response-signature"
+    },
+
+    "scope": {
+      "level": "network",
+      "semantics": "https://vendor.example.org/spec/vendor-directory-response"
+    }
+  },
+
+  // ============================================================
+  // Network profile
+  // ============================================================
+
+  "networkProfile": {
+    "networkId": "https://reshare.org/network",
+    // MUST match networkId values used in institution participation records.
+
+    "name": "ReShare",
+    "operator": "Example Vendor",
+
+    "description": "Vendor-operated ISO 18626-compatible resource sharing network",
+
+    "governanceModel": "vendor-operated"
+  },
+
+  // ============================================================
+  // Platform profile
+  // ============================================================
+
+  "platformProfile": {
+    "system": "ReShare",
+    "vendor": "Example Vendor",
+    "version": "2026.1",
+    "releaseChannel": "stable",
+
+    "notes": [
+      "Platform version may differ by tenant",
+      "Version identifiers are vendor-defined"
+    ]
+  },
+
+  // ============================================================
+  // Protocol support
+  // ============================================================
+
+  "protocolSupport": {
+    "iso18626": {
+      "supportedVersions": ["1.2", "1.3"],
+      "profiles": ["default"],
+      "transport": ["HTTPS"]
+    },
+
+    "ncip": {
+      "supported": true,
+      "supportedVersions": ["2.0"],
+      "usage": "circulation-only"
+    }
+  },
+
+  // ============================================================
+  // ISO 18626 connection details
+  // ============================================================
+
+  "iso18626Connection": {
+    // Announces how external systems connect to this network.
+    // Does NOT define routing, sequencing, or fulfillment behavior.
+
+    "endpoint": "https://network.examplevendor.org/iso18626",
+
+    "supportedRoles": ["requesting", "supplying"],
+
+    "supportedTransactionTypes": ["loan", "copy"],
+
+    "transport": {
+      "protocol": "HTTPS",
+      "methods": ["POST"],
+      "contentType": "application/xml"
+    },
+
+    "authenticationProfileRef": "oauth2-network"
+    // Indicates the preferred/default authentication profile.
+    // Other supported profiles may be negotiated out-of-band.
+  },
+
+  // ============================================================
+  // ISO 18626 state model
+  // ============================================================
+
+  "iso18626StateModel": {
+    "requestingStates": [
+      "REQUESTED",
+      "SHIPPED",
+      "RECEIVED",
+      "RETURNED",
+      "CANCELLED"
+    ],
+
+    "supplyingStates": [
+      "REQUEST_RECEIVED",
+      "SHIPPED",
+      "DELIVERED",
+      "COMPLETED",
+      "UNFILLED"
+    ],
+
+    "terminalStates": [
+      "COMPLETED",
+      "CANCELLED",
+      "UNFILLED"
+    ],
+
+    "notes": [
+      "State names follow ISO 18626 vocabulary",
+      "Only declared states are guaranteed to be supported"
+    ]
+  },
+
+  // ============================================================
+  // Groups
+  // ============================================================
+
+  "groups": [
+    {
+      "groupId": "reshare-group-northeast",
+      "groupType": "geographic",
+      "description": "Participants located in the US Northeast region",
+
+      "supportedTransactionTypes": ["loan", "copy"],
+
+      "members": [
+        "https://directory.palci.org/participants/US-nnns",
+        "https://directory.example.org/participants/US-nyu"
+      ],
+
+      "stability": "dynamic",
+
+      "notes": [
+        "Groups are classification constructs only",
+        "Group membership does not imply routing priority, obligation, or governance"
+      ]
+    },
+
+    {
+      "groupId": "reshare-group-borrowdirect",
+      "groupType": "program-based",
+      "description": "Participants in the BorrowDirect resource sharing program",
+
+      "supportedTransactionTypes": ["loan"],
+
+      "members": [
+        "https://directory.example.org/participants/US-harvard",
+        "https://directory.example.org/participants/US-yale",
+        "https://directory.example.org/participants/US-princeton",
+        "https://directory.example.org/participants/US-columbia",
+        "https://directory.example.org/participants/US-brown",
+        "https://directory.example.org/participants/US-dartmouth",
+        "https://directory.example.org/participants/US-upenn",
+        "https://directory.example.org/participants/US-chicago"
+      ],
+
+      "stability": "semi-static",
+
+      "notes": [
+        "Group corresponds to the BorrowDirect program",
+        "Membership reflects program eligibility only",
+        "Does not assert fees, service levels, or fulfillment guarantees"
+      ]
+    }
+  ],
+
+  // ============================================================
+  // Participation references
+  // ============================================================
+
+  "participationReferences": [
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-palci",
+      "programType": "resource-sharing"
+    },
+    {
+      "recordId": "https://directory.palci.org/participations/US-nnns/reshare-borrowdirect",
+      "programType": "resource-sharing"
+    }
+  ],
+
+  // ============================================================
+  // Authentication profiles
+  // Multiple authentication mechanisms MAY be supported
+  // by the same network.
+  // ============================================================
+
+  "authentication": [
+    {
+      "profileId": "oauth2-network",
+      "profile": "OAuth2",
+      "profileVersion": "2.0",
+
+      "oauth2": {
+        "grantType": "client_credentials",
+        "tokenEndpoint": "https://auth.examplevendor.org/oauth2/token",
+        "scopes": [
+          "iso18626.send",
+          "iso18626.receive"
+        ]
+      }
+    },
+    {
+      "profileId": "mtls-pki-network",
+      "profile": "mTLS-PKI",
+      "profileVersion": "1.0",
+      // Mutual TLS using X.509 client certificates.
+
+      "pki": {
+        "clientAuthRequired": true,
+        "minTlsVersion": "1.2",
+
+        "certificateBinding": {
+          "field": "subjectAltName.uri",
+          "pattern": "urn:isil:{id}"
+        },
+
+        "trustedIssuers": [
+          "https://vendor.example.org/pki/ca"
+        ],
+
+        "revocation": {
+          "method": "crl"
+        }
+      }
+    }
+  ],
+
+  // ============================================================
+  // Assertions and signatures
+  // ============================================================
+
+  "assertions": {
+    "assertedBy": [
+      {
+        "authorityId": "https://examplevendor.org",
+        "authorityType": "vendor",
+        "name": "Example Vendor"
+      }
+    ]
+  },
+
+  "responseSignatures": [
+    {
+      "algorithm": "EdDSA",
+      "signedBy": "https://examplevendor.org",
+      "signerRole": "vendor",
+      "keyId": "vendor-dir-2026",
+      "value": "BASE64_RESPONSE_SIGNATURE"
+    }
+  ]
+}
