@@ -1,14 +1,16 @@
+# Overview
+
 This directory resolves an institution’s ISIL to a canonical organizational record and returns a structured profile of its capabilities, memberships, and trust relationships. Assertions are versioned and provenance-tagged so consumers can distinguish self-declared information from externally validated claims. Responses are tiered: a public summary provides high-level visibility, while authenticated partners can follow links to retrieve more detailed operational profiles.
 
 The service is not a routing or fulfillment system. It functions as a discovery and trust layer that allows clients to understand institutional context—such as network participation or service platforms—without relying on proprietary registries. Time-bounded assertions support change tracking and synchronization, enabling interoperable service discovery while keeping operational control with the institution and making trust decisions explicit.
 
-How the directory works
+## How the directory works
 
 The directory exposes information through three trust levels tied to URL paths. Public access (/org/{ISIL}) returns a general organizational summary intended for open discovery. The partner profile (/org/{ISIL}/profiles) returns additional service and participation details once the requester proves identity. Tiered profiles (/org/{ISIL}/profiles/{tier}) disclose progressively more specific stanzas according to the requester’s authorized trust level. Access to non-public tiers requires two elements: a directory-recognized key establishing the requester’s identity and a valid issuer-signed assertion indicating the tier they are entitled to. Together, these determine which portions of the record are disclosed while keeping operational data scoped to appropriate partners.
 
-Example interaction
+### Example interaction
 
-Public Lookup 
+#### Public Lookup 
 
 Request
 
@@ -29,7 +31,7 @@ Response (200)
   }
 }
 
-Partner Profile
+#### Partner Profile
 
 The client signs the request (or uses mTLS). The directory verifies the key and resolves the requester’s org identity.
 
@@ -56,7 +58,7 @@ Signature: keyId="client-key-123",algorithm="rsa-pss-sha512",headers="(request-t
   }
 }
 
-Tiered Profile
+#### Tiered Profile
 
 The client includes:
 
@@ -91,7 +93,7 @@ Response (200)
   }
 }
 
-Unauthorized tier attempt
+#### Unauthorized tier attempt
 
 Response (403)
 
